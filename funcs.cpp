@@ -7,9 +7,9 @@ const double Epsilon = 0.001;
 int SolveSquare(struct coefficients coefs, struct solution *psol)
 {
 
-    int a = coefs.a,
-        b = coefs.b,
-        c = coefs.c;
+    double a = coefs.a,
+           b = coefs.b,
+           c = coefs.c;
 
     int num_root = 0;
 
@@ -103,7 +103,7 @@ int Input(char *name, struct coefficients *pcoefs)
     FILE *in = fopen(name, "r");
     if (in == NULL) return INPUT_ERROR;
 
-    if (NUM_ARGS != fscanf (in, "%lf %lf %lf", pcoefs -> a, pcoefs -> b, pcoefs -> c))
+    if (NUM_ARGS != fscanf (in, "%lf %lf %lf", &(pcoefs -> a), &(pcoefs -> b), &(pcoefs -> c)))
     {
         fclose(in);
         return INPUT_ERROR;
