@@ -2,7 +2,7 @@
 #define SQUARE_H
 
 
-//#define NDEBUG
+#define NDEBUG
 
 
 #include<assert.h>

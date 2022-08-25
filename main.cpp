@@ -1,6 +1,5 @@
 #include "square.h"
 
-#define NDEBUG
 
 int main(void)
 {

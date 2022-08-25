@@ -10,9 +10,9 @@ int SolveSquare(double a, double b, double c, double *px1, double *px2)
     assert (px1 != NULL);
     assert (px2 != NULL);
 
-    assert (!isfinite(a));
-    assert (!isfinite(b));
-    assert (!isfinite(c));
+    assert (isfinite(a));
+    assert (isfinite(b));
+    assert (isfinite(c));
 
     int num_root = 0;
     double d = 0;
@@ -84,7 +84,13 @@ int Input(char *name, double* a, double* b, double* c)
     FILE *in = fopen(name, "r");
     if (in == NULL) return INPUT_ERROR;
 
-    if (3 != fscanf (in, "%lf%lf%lf", a, b, c)) return INPUT_ERROR;
+    if (3 != fscanf (in, "%lf%lf%lf", a, b, c))
+    {
+        fclose(in);
+        return INPUT_ERROR;
+    }
+
+    fclose(in);
 
     return 0;
 }
@@ -115,8 +121,11 @@ int Output(char *name, int num_root, double x1, double x2)
 
         default:
             fprintf (out, "Output Error");
+            fclose(out);
             return OUTPUT_ERROR;
     }
+
+    fclose(out);
 
     return 0;
 }
