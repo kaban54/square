@@ -50,6 +50,12 @@ int SolveSquare(double a, double b, double c, double *px1, double *px2)
 
 int SolveLinear(double a, double b, double *px)
 {
+    assert (px != NULL);
+
+    assert (isfinite(a));
+    assert (isfinite(b));
+
+
     int num_root = ZERO;
 
     if(IsZero(a))
