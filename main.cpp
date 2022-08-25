@@ -1,13 +1,15 @@
 #include "square.h"
 
+//doxygen
 
 int main(void)
 {
 
     #ifdef NDEBUG
 
-    double a = NAN, b = NAN, c = NAN, x1 = NAN, x2 = NAN;
-    int num_root = 0;
+
+    struct coefficients coefs = {NAN, NAN, NAN};
+    struct solution     sol   = {  0, NAN, NAN};
 
     char inp_file_name[MAX_LEN], out_file_name[MAX_LEN];
 
@@ -17,17 +19,17 @@ int main(void)
     scanf  ("%s", out_file_name);
 
 
-    if (Input(inp_file_name, &a, &b, &c))
+    if (Input(inp_file_name, &coefs))
     {
         return INPUT_ERROR;
         printf ("Input Error");
     }
 
 
-    num_root = SolveSquare(a, b, c, &x1, &x2);
+    sol.num_root = SolveSquare(coefs, &sol);
 
 
-    if (Output(out_file_name, num_root, x1, x2))
+    if (Output(out_file_name, sol))
     {
         return OUTPUT_ERROR;
         printf ("Output Error");
@@ -35,16 +37,18 @@ int main(void)
 
     return 0;
 
-    #else
+    #else                                //cmd line arguments
 
-    char inp_file_name[MAX_LEN], out_file_name[MAX_LEN];
+    char inp_file_name[MAX_LEN] = "";
+    char out_file_name[MAX_LEN] = "";
 
-    printf (" Input file name: ");
+    printf (" Input test file name: ");
     scanf  ("%s", inp_file_name);
-    printf ("Output file name: ");
+    printf ("Output test file name: ");
     scanf  ("%s", out_file_name);
 
-    FILE *inp_file, *out_file;
+    FILE *inp_file = NULL;
+    FILE *out_file = NULL;
 
     if ((inp_file = fopen(inp_file_name, "r")) == NULL)
     {

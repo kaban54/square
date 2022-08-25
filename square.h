@@ -1,8 +1,8 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
-
-#define NDEBUG
+//
+//  #define NDEBUG
 
 
 #include<assert.h>
@@ -11,17 +11,28 @@
 
 
 #define MAX_LEN 100
+#define NUM_ARGS 3
+#define TEST_NUM_ARGS 6
 
-//assert
-//isnan
-//unit tests
+struct coefficients
+{
+    double a;
+    double b;
+    double c;
+};
+
+struct solution
+{
+    int num_root;
+    double x1;
+    double x2;
+};
 
 
+int Input  (char *name, struct coefficients *pcoefs);
+int Output (char *name, struct solution sol);
 
-int Input  (char *name, double *a, double *b, double *c);
-int Output (char *name, int num_root, double x1, double x2);
-
-int SolveSquare (double a, double b, double c, double *x1, double *x2);
+int SolveSquare(struct coefficients coefs, struct solution *psol);
 int SolveLinear (double a, double b, double *x);
 
 int IsZero (double x);
@@ -29,15 +40,17 @@ int Eq     (double x, double y);
 
 void SquareTest (FILE *in, FILE *out);
 
-int Correct        (int    in_nr, double inx1, double inx2,
-                    int num_root, double   x1, double   x2);
+int Correct        (struct solution inp_sol,
+                    struct solution     sol);
 
-void PrintFail     (FILE *out, double a, double b, double c,
-                    int    in_nr, double inx1, double inx2,
-                    int num_root, double   x1, double   x2);
+void PrintFail     (FILE *out,
+                    struct coefficients coefs,
+                    struct solution inp_sol,
+                    struct solution     sol);
 
-void PrintSuccess  (FILE *out, double a, double b , double c,
-                    int num_root, double x1, double x2);
+void PrintSuccess  (FILE *out,
+                    struct coefficients coefs,
+                    struct solution     sol);
 
 void PrintInpError (FILE *out, char *buf);
 

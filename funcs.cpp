@@ -1,11 +1,21 @@
 #include"square.h"
 
 
-const double Zero = 0.000001;
+const double Epsilon = 0.001;
 
 
-int SolveSquare(double a, double b, double c, double *px1, double *px2)
+int SolveSquare(struct coefficients coefs, struct solution *psol)
 {
+
+    int a = coefs.a,
+        b = coefs.b,
+        c = coefs.c;
+
+    int num_root = 0;
+
+    double *px1 = &(psol -> x1),
+           *px2 = &(psol -> x2);
+
 
     assert (px1 != NULL);
     assert (px2 != NULL);
@@ -14,8 +24,8 @@ int SolveSquare(double a, double b, double c, double *px1, double *px2)
     assert (isfinite(b));
     assert (isfinite(c));
 
-    int num_root = 0;
-    double d = 0;
+
+    double d = NAN;
 
 
     if(IsZero(a)) num_root = SolveLinear(b, c, px1);
@@ -29,8 +39,9 @@ int SolveSquare(double a, double b, double c, double *px1, double *px2)
     else
     {
         d = b * b - 4 * a * c;
-        if(d < 0) num_root = ZERO;
-        else if(IsZero(d))
+
+        if (d < 0) num_root = ZERO;
+        else if (IsZero(d))
         {
             num_root = ONE;
             *px1 = -b / (2 * a);
@@ -44,6 +55,8 @@ int SolveSquare(double a, double b, double c, double *px1, double *px2)
             *px2 = (-b + d) / (2 * a);
         }
     }
+
+    psol -> num_root = num_root;
     return num_root;
 }
 
@@ -73,8 +86,8 @@ int SolveLinear(double a, double b, double *px)
 
 int IsZero(double x)
 {
-    if (fabs(x) < Zero) return 1;
-    else                return 0;
+    if (fabs(x) < Epsilon) return 1;
+    else                   return 0;
 }
 
 int Eq(double x, double y)
@@ -85,12 +98,12 @@ int Eq(double x, double y)
 
 
 
-int Input(char *name, double* a, double* b, double* c)
+int Input(char *name, struct coefficients *pcoefs)
 {
     FILE *in = fopen(name, "r");
     if (in == NULL) return INPUT_ERROR;
 
-    if (3 != fscanf (in, "%lf%lf%lf", a, b, c))
+    if (NUM_ARGS != fscanf (in, "%lf %lf %lf", pcoefs -> a, pcoefs -> b, pcoefs -> c))
     {
         fclose(in);
         return INPUT_ERROR;
@@ -101,8 +114,14 @@ int Input(char *name, double* a, double* b, double* c)
     return 0;
 }
 
-int Output(char *name, int num_root, double x1, double x2)
+int Output(char *name, struct solution sol)
 {
+
+    int num_root = sol.num_root;
+    double x1 = sol.x1,
+           x2 = sol.x2;
+
+
     FILE *out = fopen(name, "w");
     if (out == NULL) return OUTPUT_ERROR;
 
