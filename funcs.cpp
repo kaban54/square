@@ -10,8 +10,9 @@ int SolveSquare(double a, double b, double c, double *px1, double *px2)
     assert (px1 != NULL);
     assert (px2 != NULL);
 
-    //isfinite ();
-    //isnan ();
+    assert (!isfinite(a));
+    assert (!isfinite(b));
+    assert (!isfinite(c));
 
     int num_root = 0;
     double d = 0;
