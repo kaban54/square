@@ -2,14 +2,13 @@
 
 
 
-
 void SquareTest(FILE *in, FILE *out)
 {
     char buf[MAX_LEN] {};
 
-    struct coefficients coefs = {NAN, NAN, NAN};
-    struct solution     sol   = {  0, NAN, NAN};
-    struct solution inp_sol   = {  0, NAN, NAN};
+    struct coefficients coefs {};
+    struct solution     sol   {};
+    struct solution inp_sol   {};
 
     while(1)
     {
@@ -53,14 +52,14 @@ int Correct(struct solution inp_sol, struct solution sol)
     case INF:
         return 1;
 
-    case 0:
+    case ZERO:
         return 1;
 
-    case 1:
+    case ONE:
         if (Eq(x1, inx1)) return 1;
         else              return 0;
 
-    case 2:
+    case TWO:
         if ((Eq(x1, inx1) && Eq(x2, inx2)) || (Eq(x1, inx2) && Eq(x2, inx1)))
             return 1;
         else

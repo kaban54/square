@@ -2,21 +2,25 @@
 
 //doxygen
 
-int main(void)
+int main(int argc, char *argv[])
 {
 
     #ifdef NDEBUG
 
+    if (argc < 3)
+    {
+        prinitf("Not enough arguments.");
+        return ARG_ERROR;
+    }
 
-    struct coefficients coefs = {NAN, NAN, NAN};
-    struct solution     sol   = {  0, NAN, NAN};
+    struct coefficients coefs {};
+    struct solution     sol   {};
 
-    char inp_file_name[MAX_LEN], out_file_name[MAX_LEN];
+    char inp_file_name[MAX_LEN] = "";
+    char out_file_name[MAX_LEN] = "";
 
-    printf (" Input file name: ");
-    scanf  ("%s", inp_file_name);
-    printf ("Output file name: ");
-    scanf  ("%s", out_file_name);
+    strcpy(inp_file_name, argv[1]);
+    strcpy(out_file_name, argv[2]);
 
 
     if (Input(inp_file_name, &coefs))
@@ -37,15 +41,21 @@ int main(void)
 
     return 0;
 
-    #else                                //cmd line arguments
+    #else
+
+    if (argc < 3)
+    {
+        printf("Not enough arguments.");
+        return ARG_ERROR;
+    }
+
 
     char inp_file_name[MAX_LEN] = "";
     char out_file_name[MAX_LEN] = "";
 
-    printf (" Input test file name: ");
-    scanf  ("%s", inp_file_name);
-    printf ("Output test file name: ");
-    scanf  ("%s", out_file_name);
+    strcpy(inp_file_name, argv[1]);
+    strcpy(out_file_name, argv[2]);
+
 
     FILE *inp_file = NULL;
     FILE *out_file = NULL;

@@ -1,7 +1,7 @@
 #include"square.h"
 
 
-const double Epsilon = 0.001;
+const double Epsilon = 1e-3;
 
 
 int SolveSquare(struct coefficients coefs, struct solution *psol)

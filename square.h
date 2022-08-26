@@ -5,10 +5,10 @@
 //  #define NDEBUG
 
 
-#include<assert.h>
-#include<stdio.h>
-#include<math.h>
-
+#include <assert.h>
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
 
 #define MAX_LEN 100
 #define NUM_ARGS 3
@@ -16,16 +16,16 @@
 
 struct coefficients
 {
-    double a;
-    double b;
-    double c;
+    double a = NAN;
+    double b = NAN;
+    double c = NAN;
 };
 
 struct solution
 {
-    int num_root;
-    double x1;
-    double x2;
+    int num_root = 0;
+    double x1 = NAN;
+    double x2 = NAN;
 };
 
 
@@ -58,6 +58,7 @@ void PrintInpError (FILE *out, char *buf);
 enum ERRORS {
     INPUT_ERROR  = 1,
     OUTPUT_ERROR = 2,
+    ARG_ERROR    = 3,
 
 };
 
