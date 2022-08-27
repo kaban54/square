@@ -3,14 +3,12 @@
 
 int main(int argc, char *argv[])
 {
-
-    #ifdef NDEBUG
-
     if (argc < 3)
-    {
-        prinitf("Not enough arguments.");
-        return ARG_ERROR;
-    }
+        {
+            printf("Not enough arguments.");
+            return ARG_ERROR;
+        }
+    #ifdef NDEBUG
 
     struct coefficients coefs {};
     struct solution     sol   {};
@@ -41,13 +39,6 @@ int main(int argc, char *argv[])
     return 0;
 
     #else
-
-    if (argc < 3)
-    {
-        printf("Not enough arguments.");
-        return ARG_ERROR;
-    }
-
 
     char inp_file_name[MAX_LEN] = "";
     char out_file_name[MAX_LEN] = "";

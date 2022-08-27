@@ -7,22 +7,20 @@ const double Epsilon = 1e-3;
 int SolveSquare(struct coefficients coefs, struct solution *psol)
 {
 
+    assert (psol != NULL);
+
     double a = coefs.a,
            b = coefs.b,
            c = coefs.c;
+
+    assert (isfinite(a));
+    assert (isfinite(b));
+    assert (isfinite(c));
 
     int num_root = 0;
 
     double *px1 = &(psol -> x1),
            *px2 = &(psol -> x2);
-
-
-    assert (px1 != NULL);
-    assert (px2 != NULL);
-
-    assert (isfinite(a));
-    assert (isfinite(b));
-    assert (isfinite(c));
 
 
     double d = NAN;
@@ -128,15 +126,15 @@ int Output(char *name, struct solution sol)
     switch(num_root)
     {
 
-        case 0:
+        case ZERO:
             fprintf (out, "No roots\n");
             break;
 
-        case 1:
+        case ONE:
             fprintf (out, "x = %lf\n", x1);
             break;
 
-        case 2:
+        case TWO:
             fprintf (out, "x1 = %lf\nx2 = %lf\n", x1, x2);
             break;
 
