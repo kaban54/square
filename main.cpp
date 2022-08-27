@@ -1,6 +1,5 @@
 #include "square.h"
 
-//doxygen
 
 int main(int argc, char *argv[])
 {
