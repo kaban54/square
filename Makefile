@@ -10,4 +10,7 @@ square: main.o funcs.o unittests.o square.h
 	g++ -o square.exe main.o unittests.o funcs.o square.h $(FLAGS)
 
 *.o: *.cpp square.h
-	g++ -c -o *.o *.cpp square.h
+	g++ -c -o *.o *.cpp square.h $(FLAGS)
+
+clean:
+	rm *.o
