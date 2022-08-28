@@ -8,17 +8,18 @@ int main(int argc, char *argv[])
             printf("Not enough arguments.");
             return ARG_ERROR;
         }
-    #ifdef NDEBUG
-
-    struct coefficients coefs {};
-    struct solution     sol   {};
 
     char inp_file_name[MAX_LEN] = "";
     char out_file_name[MAX_LEN] = "";
 
-    strcpy(inp_file_name, argv[1]);
-    strcpy(out_file_name, argv[2]);
+    strcpy (inp_file_name, argv[1]);
+    strcpy (out_file_name, argv[2]);
 
+
+    #ifdef NDEBUG
+
+    struct coefficients coefs {};
+    struct solution     sol   {};
 
     if (Input(inp_file_name, &coefs))
     {
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
     }
 
 
-    sol.num_root = SolveSquare(coefs, &sol);
+    sol.num_root = SolveSquare (coefs, &sol);
 
 
     if (Output(out_file_name, sol))
@@ -40,24 +41,17 @@ int main(int argc, char *argv[])
 
     #else
 
-    char inp_file_name[MAX_LEN] = "";
-    char out_file_name[MAX_LEN] = "";
-
-    strcpy(inp_file_name, argv[1]);
-    strcpy(out_file_name, argv[2]);
-
-
     FILE *inp_file = NULL;
     FILE *out_file = NULL;
 
     if ((inp_file = fopen(inp_file_name, "r")) == NULL)
     {
-        printf("Input Error");
+        printf ("Input Error");
         return  INPUT_ERROR;
     }
     if ((out_file = fopen(out_file_name, "w")) == NULL)
     {
-        printf("Output Error");
+        printf ("Output Error");
         return  OUTPUT_ERROR;
     }
 

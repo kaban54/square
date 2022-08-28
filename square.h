@@ -156,8 +156,8 @@ void PrintInpError (FILE *out, char *buf);
 //! @return  str    string
 //}----------------------------------------------------------------------------------------------------------------
 
-
 char *myfgets(char *str, int n, FILE *fp)
+
 
 enum ERRORS {
     INPUT_ERROR  = 1,
@@ -165,6 +165,7 @@ enum ERRORS {
     ARG_ERROR    = 3,
 
 };
+
 
 enum ROOT_CNT {
     INF  = -1,
