@@ -29,9 +29,17 @@ int SolveSquare(struct coefficients coefs, struct solution *psol)
 
     else if(IsZero(c))
     {
-        *px1 = 0;
-        num_root = SolveLinear(a, b, px2);
-        num_root = (num_root == INF) ? INF : num_root + 1;
+        if(IsZero(b))
+        {
+            *px1 = 0;
+            num_root = ONE;
+        }
+        else
+        {
+            *px1 = 0;
+            num_root = SolveLinear(a, b, px2);
+            num_root = (num_root == INF) ? INF : num_root + 1;
+        }
     }
     else
     {
@@ -130,11 +138,11 @@ int Output(char *name, struct solution sol)
             break;
 
         case ONE:
-            fprintf (out, "x = %lf\n", x1);
+            fprintf (out, "x = %lg\n", x1);
             break;
 
         case TWO:
-            fprintf (out, "x1 = %lf\nx2 = %lf\n", x1, x2);
+            fprintf (out, "x1 = %lg\nx2 = %lg\n", x1, x2);
             break;
 
         case INF:
@@ -152,24 +160,26 @@ int Output(char *name, struct solution sol)
     return 0;
 }
 
-char *myfgets(char *str, int n, FILE *fp)
+char *myfgets(char *str, int num, FILE *fp)
 {
     assert (str != NULL);
     assert (fp  != NULL);
-    assert (isfinite(n));
+    assert (isfinite(num));
 
-    char c = 0;
-    int  i = 0;
+    char ch    = 0;
+    int  index = 0;
 
-    c = fgetc(fp);
+    ch = (char)fgetc(fp);
 
-    while (c != EOF && c != '\0' && c != '\n' && i < n - 1)
+    while (ch != EOF && ch != '\0' && ch != '\n' && index < num - 1)
     {
-        *(str + i) = c;
-        i++;
+        *(str + index++) = ch;
+        ch = (char)fgetc(fp);
     }
 
-    *(str + i) = '\0';
+    *(str + index) = '\0';
+
+    if (ch == EOF) return NULL;
 
     return str;
 

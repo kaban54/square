@@ -6,9 +6,17 @@
 #include <math.h>
 #include <string.h>
 
-#define MAX_LEN 100
-#define NUM_ARGS 3
-#define TEST_NUM_ARGS 6
+const size_t MAX_LEN = 100;
+const size_t NUM_ARGS = 3;
+const size_t TEST_NUM_ARGS = 6;
+
+//{----------------------------------------------------------------------------------------------------------------
+//! @brief contains coefficients of the equation
+//!
+//! @param a    a coefficient
+//! @param b    b coefficient
+//! @param c    c coefficient
+//{----------------------------------------------------------------------------------------------------------------
 
 struct coefficients
 {
@@ -17,12 +25,39 @@ struct coefficients
     double c = NAN;
 };
 
+//{----------------------------------------------------------------------------------------------------------------
+//! @brief contains number of roots and roots of the equation
+//!
+//! @param num_root number of roots
+//! @param x1       first  root
+//! @param x2       second root
+//{----------------------------------------------------------------------------------------------------------------
+
 struct solution
 {
     int num_root = 0;
     double x1 = NAN;
     double x2 = NAN;
 };
+
+//! @brief contains possible errors of the program
+
+enum ERRORS {
+    INPUT_ERROR  = 1,
+    OUTPUT_ERROR = 2,
+    ARG_ERROR    = 3,
+
+};
+
+//! @brief contains possible number of roots
+
+enum ROOT_CNT {
+    INF  = -1,
+    ZERO =  0,
+    ONE  =  1,
+    TWO  =  2,
+};
+
 
 //{----------------------------------------------------------------------------------------------------------------
 //! @brief   Gets equation coefficients from the input file
@@ -156,23 +191,8 @@ void PrintInpError (FILE *out, char *buf);
 //! @return  str    string
 //}----------------------------------------------------------------------------------------------------------------
 
-char *myfgets(char *str, int n, FILE *fp)
+char *myfgets(char *str, int n, FILE *fp);
 
-
-enum ERRORS {
-    INPUT_ERROR  = 1,
-    OUTPUT_ERROR = 2,
-    ARG_ERROR    = 3,
-
-};
-
-
-enum ROOT_CNT {
-    INF  = -1,
-    ZERO =  0,
-    ONE  =  1,
-    TWO  =  2,
-};
 
 #endif
 
