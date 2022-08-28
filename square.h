@@ -146,6 +146,18 @@ void PrintSuccess  (FILE *out,
 
 void PrintInpError (FILE *out, char *buf);
 
+//{----------------------------------------------------------------------------------------------------------------
+//! @brief   gets string from file without '\n'
+//!
+//! @param   str    destination string
+//! @param   n      max length of string
+//! @param   fp     file
+//!
+//! @return  str    string
+//}----------------------------------------------------------------------------------------------------------------
+
+
+char *myfgets(char *str, int n, FILE *fp)
 
 enum ERRORS {
     INPUT_ERROR  = 1,

@@ -12,7 +12,7 @@ void SquareTest(FILE *in, FILE *out)
 
     while(1)
     {
-        if (fgets(buf, MAX_LEN, in) == NULL) break;
+        myfgets(buf, MAX_LEN, in);
 
         if (TEST_NUM_ARGS != sscanf(buf, "%lf %lf %lf %d %lf %lf",
                                     &coefs.a, &coefs.b, &coefs.c,
@@ -100,12 +100,6 @@ void PrintSuccess(FILE *out,
 
 void PrintInpError(FILE *out, char *buf)
 {
-    int i = 0;
-
-    while (buf[i] != '\n' && buf[i] != '\0') i++;
-
-    if (buf[i] == '\n') buf[i] = '\0';
-
     fprintf(out, "%s Input Error.\n", buf);
 }
 

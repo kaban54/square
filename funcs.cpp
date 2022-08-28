@@ -3,7 +3,6 @@
 
 const double Epsilon = 1e-3;
 
-
 int SolveSquare(struct coefficients coefs, struct solution *psol)
 {
 
@@ -153,4 +152,25 @@ int Output(char *name, struct solution sol)
     return 0;
 }
 
+char *myfgets(char *str, int n, FILE *fp)
+{
+    assert (str != NULL);
+    assert (fp  != NULL);
+    assert (isfinite(n));
 
+    char c = 0;
+    int  i = 0;
+
+    c = fgetc(fp);
+
+    while (c != EOF && c != '\0' && c != '\n' && i < n - 1)
+    {
+        *(str + i) = c;
+        i++;
+    }
+
+    *(str + i) = '\0';
+
+    return str;
+
+}
