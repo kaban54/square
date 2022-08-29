@@ -16,7 +16,7 @@ const size_t TEST_NUM_ARGS = 6;
 //! @param a    a coefficient
 //! @param b    b coefficient
 //! @param c    c coefficient
-//{----------------------------------------------------------------------------------------------------------------
+//}----------------------------------------------------------------------------------------------------------------
 
 struct coefficients
 {
@@ -31,7 +31,7 @@ struct coefficients
 //! @param num_root number of roots
 //! @param x1       first  root
 //! @param x2       second root
-//{----------------------------------------------------------------------------------------------------------------
+//}----------------------------------------------------------------------------------------------------------------
 
 struct solution
 {
@@ -68,7 +68,7 @@ enum ROOT_CNT {
 //! @return  0 if the input is correct, 1 if an input error occurs
 //}----------------------------------------------------------------------------------------------------------------
 
-int Input  (char *name, struct coefficients *pcoefs);
+int Input  (const char *name, struct coefficients *pcoefs);
 
 //{----------------------------------------------------------------------------------------------------------------
 //! @brief   Prints solution to the output file
@@ -79,7 +79,7 @@ int Input  (char *name, struct coefficients *pcoefs);
 //! @return  0 if no errors occurred, 2 if an output error occurs
 //}----------------------------------------------------------------------------------------------------------------
 
-int Output (char *name, struct solution sol);
+int Output (const char *name, struct solution sol);
 
 //{----------------------------------------------------------------------------------------------------------------
 //! @brief   Solves quadratic equation

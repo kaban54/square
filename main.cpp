@@ -9,11 +9,8 @@ int main(int argc, char *argv[])
             return ARG_ERROR;
         }
 
-    char inp_file_name[MAX_LEN] = "";
-    char out_file_name[MAX_LEN] = "";
-
-    strcpy (inp_file_name, argv[1]);
-    strcpy (out_file_name, argv[2]);
+    const char *inp_file_name = argv[1];
+    const char *out_file_name = argv[2];
 
 
     #ifdef NDEBUG

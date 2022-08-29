@@ -103,7 +103,7 @@ int Eq(double x, double y)
 
 
 
-int Input(char *name, struct coefficients *pcoefs)
+int Input(const char *name, struct coefficients *pcoefs)
 {
     FILE *in = fopen(name, "r");
     if (in == NULL) return INPUT_ERROR;
@@ -119,7 +119,7 @@ int Input(char *name, struct coefficients *pcoefs)
     return 0;
 }
 
-int Output(char *name, struct solution sol)
+int Output(const char *name, struct solution sol)
 {
 
     int num_root = sol.num_root;

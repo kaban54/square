@@ -6,11 +6,6 @@ FLAGS +=	-Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings 
 FLAGS += 	-DNDEBUG
 
 
-square: main.o funcs.o unittests.o square.h
-	g++ -o square.exe main.o unittests.o funcs.o square.h $(FLAGS)
+square: main.cpp funcs.cpp unittests.cpp square.h
+	g++ -o square.exe main.cpp funcs.cpp unittests.cpp square.h $(FLAGS)
 
-*.o: *.cpp square.h
-	g++ -c -o *.o *.cpp square.h $(FLAGS)
-
-clean:
-	rm *.o
